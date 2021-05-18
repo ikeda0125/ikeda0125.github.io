@@ -35,9 +35,11 @@ window.onload = () => {
     const scene = document.querySelector('a-scene');
 
     // first get current user location
+    // ユーザーの位置を読み込み
     return navigator.geolocation.getCurrentPosition(function (position) {
-
-        // than use it to load from remote APIs some places nearby
+	
+	// than use it to load from remote APIs some places nearby
+        // ユーザーの位置情報を使って、リモートAPIから近くの場所を取得
         loadPlaces(position.coords)
             .then((places) => {
                 places.forEach((place) => {
@@ -45,6 +47,7 @@ window.onload = () => {
                     const longitude = place.location.lng;
 
                     // add place name
+		    // a-linkオブジェクトを使って、読み込んだ座標に提示
                     const placeText = document.createElement('a-link');
                     placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
                     placeText.setAttribute('title', place.name);
